@@ -1,0 +1,35 @@
+server:
+  port: 18080
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  jpa:
+    show-sql: true
+    #    database-platform: mysql
+    hibernate:
+      ddl-auto: none
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:13306/gift?serverTimezone=UTC&characterEncoding=UTF-8
+      username: gift-svc
+      password: gift-pass
+  flyway:
+    user: gift-svc
+    password: gift-pass
+    schemas: gift
+    url: jdbc:mysql://localhost:13306/gift?serverTimezone=UTC&characterEncoding=UTF-8
+    enabled: true
+
+logging:
+  config: classpath:logback-local.xml
+
+example.order:
+  base-url: http://localhost:8080/
+
+cloud:
+  aws:
+    access-key: aaaa
+    secret-key: bbbb
